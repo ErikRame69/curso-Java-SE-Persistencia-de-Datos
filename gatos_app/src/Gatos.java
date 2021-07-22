@@ -1,8 +1,10 @@
-public class gatos {
+public class Gatos {
     int id;
     String url;
-    String apikey;
+    String  apikey = "d05e4035-884e-4dd6-98ac-c66e18c978f5";
     String image;
+
+
 
     public int getId() {
         return id;
