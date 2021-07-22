@@ -1,25 +1,25 @@
 public class Mensajes {
-    int idMensaje;
+    int id_mensaje;
     String mensaje;
-    String autorMensaje;
-    String fechaMensaje;
+    String autor;
+    String fecha_mensaje;
 
     public Mensajes(){
 
     }
 
-    public Mensajes(String mensaje, String autorMensaje, String fechaMensaje) {
+    public Mensajes(String mensaje, String autor, String fecha_mensaje) {
         this.mensaje = mensaje;
-        this.autorMensaje = autorMensaje;
-        this.fechaMensaje = fechaMensaje;
+        this.autor = autor;
+        this.fecha_mensaje = fecha_mensaje;
     }
 
-    public int getIdMensaje() {
-        return idMensaje;
+    public int getId_Mensaje() {
+        return id_mensaje;
     }
 
-    public void setIdMensaje(int idMensaje) {
-        this.idMensaje = idMensaje;
+    public void setId_Mensaje(int idMensaje) {
+        this.id_mensaje = idMensaje;
     }
 
     public String getMensaje() {
@@ -30,19 +30,19 @@ public class Mensajes {
         this.mensaje = mensaje;
     }
 
-    public String getAutorMensaje() {
-        return autorMensaje;
+    public String getAutor() {
+        return autor;
     }
 
-    public void setAutorMensaje(String autorMensaje) {
-        this.autorMensaje = autorMensaje;
+    public void setAutor(String autor) {
+        this.autor = autor;
     }
 
-    public String getFechaMensaje() {
-        return fechaMensaje;
+    public String getFecha_Mensaje() {
+        return fecha_mensaje;
     }
 
-    public void setFechaMensaje(String fechaMensaje) {
-        this.fechaMensaje = fechaMensaje;
+    public void setFecha_Mensaje(String fecha_mensaje) {
+        this.fecha_mensaje = fecha_mensaje;
     }
 }
