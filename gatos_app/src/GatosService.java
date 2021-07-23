@@ -1,12 +1,15 @@
 import com.google.gson.Gson;
-import com.squareup.okhttp.*;
-
+import com.squareup.okhttp.MediaType;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.RequestBody;
+import com.squareup.okhttp.Response;
 import java.awt.Image;
 import java.io.IOException;
 import java.net.URL;
 import javax.imageio.ImageIO;
-import javax.swing.*;
-
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 
 
@@ -16,7 +19,7 @@ public class GatosService {
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url("https://api.thecatapi.com/v1/images/search")
-                .method("GET", null)
+                .get()
                 .build();
         Response response = client.newCall(request).execute();
 
@@ -34,9 +37,10 @@ public class GatosService {
             image = ImageIO.read(url);
 
             ImageIcon fondoGato = new ImageIcon(image);
-            if (fondoGato.getIconWidth()>800) {
+
+            if (fondoGato.getIconWidth() >800) {
                 Image fondo = fondoGato.getImage();
-                Image modificafa = fondo.getScaledInstance(800, 600, Image.SCALE_SMOOTH);
+                Image modificafa = fondo.getScaledInstance(800, 600, java.awt.Image.SCALE_SMOOTH);
                 fondoGato = new ImageIcon(modificafa);
 
             }
@@ -62,7 +66,7 @@ public class GatosService {
                     verGatos();
                     break;
                 case 1:
-                    favoritoGato(gatos);
+                   // favoritoGato(gatos);
                 default:
                     break;
             }
@@ -71,7 +75,7 @@ public class GatosService {
         }
     }
 
-    public static void favoritoGato(Gatos gato){
+   public static void favoritoGato(Gatos gato){
         try{
             OkHttpClient client = new OkHttpClient();
             MediaType mediaType = MediaType.parse("application/json");
@@ -88,4 +92,37 @@ public class GatosService {
             System.out.println(e);
         }
     }
+
+    public static void verFavorito(String apikey) throws IOException{
+
+        OkHttpClient client = new OkHttpClient();
+
+        Request request = new Request.Builder()
+                .url("https://api.thecatapi.com/v1/favourites")
+                .get()
+                .addHeader("Content-Type", "application/json")
+                .addHeader("x-api-key", apikey)
+                .build();
+
+        Response response = client.newCall(request).execute();
+
+        String elJson = response.body().string();
+
+        Gson gson = new Gson();
+
+        GatosFav[] gatosArray = gson.fromJson(elJson,GatosFav[].class);
+
+        if(gatosArray.length > 0){
+            int min = 1;
+            int max  = gatosArray.length;
+            int aleatorio = (int) (Math.random() * ((max-min)-1)) + min;
+            int indice = aleatorio-1;
+
+            GatosFav gatofav = gatosArray[indice];
+
+
+        }
+
+    }
+
 }
